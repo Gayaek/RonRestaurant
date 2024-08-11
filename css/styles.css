@@ -1,4 +1,9 @@
-/* styles.css */
+/* General Customizations */
+body {
+    font-family: Arial, sans-serif;
+    direction: rtl;
+    text-align: right;
+}
 
 /* Navbar Customization */
 .navbar {
@@ -91,12 +96,6 @@
     border-color: #c32c1c;
 }
 
-/* Footer */
-footer {
-    background-color: #f8f9fa;
-    margin-top: 20px;
-}
-
 /* Menu Section Customization */
 .menu-section h3 {
     font-size: 1.5rem;
@@ -122,8 +121,37 @@ footer {
     margin-bottom: 20px;
 }
 
+/* Specials Section Customization */
+.menu-section .col-12 ul li {
+    font-weight: bold;
+    color: #333;
+}
+
+.menu-section .col-12 ul li strong {
+    color: #E03A24;
+}
+
 /* Footer */
 footer {
     background-color: #f8f9fa;
     margin-top: 20px;
+    padding: 15px 0;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* Specific to Dropdown */
+#restaurant-selection {
+    margin-top: 20px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#restaurant-select {
+    font-size: 1.2rem;
+    padding: 10px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
 }

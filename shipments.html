@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meat & Cheese - משלוחים</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- jQuery for dynamic updates -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body dir="rtl">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Meat & Cheese</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="menu.html">תפריטים</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="branches.html">סניפים</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">גלרייה</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="shipments.html">משלוחים</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">צור קשר</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><img src="images/facebook_icon.png" alt="Facebook"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><img src="images/instagram_icon.png" alt="Instagram"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Shipments Section -->
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">משלוחים</h1>
+        
+        <!-- Restaurant Selection -->
+        <div class="mb-4" id="restaurant-selection">
+            <label for="restaurant-select">בחר מסעדה:</label>
+            <select class="form-select" id="restaurant-select">
+                <option value="תל אביב">תל אביב - דיזנגוף סנטר</option>
+                <option value="ירושלים">ירושלים - ממילא</option>
+                <option value="חיפה">חיפה - גרנד קניון</option>
+                <option value="באר שבע">באר שבע - קניון הנגב</option>
+                <!-- Add more restaurants as needed -->
+            </select>
+        </div>
+
+        <!-- Delivery or Pickup Options -->
+        <div class="mb-4" id="delivery-pickup-section">
+            <label>בחר אפשרות:</label>
+            <div class="d-flex">
+                <button id="pickup-btn" class="btn btn-outline-success me-2">מגשים למסעדה</button>
+                <button id="delivery-btn" class="btn btn-outline-primary">משלוח עד אליך</button>
+            </div>
+        </div>
+
+        <!-- Address Input for Delivery (Initially Hidden) -->
+        <div id="address-section" class="mb-4" style="display: none;">
+            <label for="address-input">הזן כתובת למשלוח:</label>
+            <input type="text" id="address-input" class="form-control">
+        </div>
+
+        <!-- Product Selection (Initially Hidden) -->
+        <div id="product-selection" style="display: none;">
+            <div class="mb-4">
+                <label for="product-select">בחר מוצרים:</label>
+                <div id="products-container">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+                <p>סכום לתשלום: <span id="total-price">₪0</span></p>
+            </div>
+        </div>
+
+        <!-- Payment Section (Initially Hidden) -->
+        <div id="payment-section" class="mb-4" style="display: none;">
+            <!-- Payment options or payment form will be dynamically inserted here -->
+        </div>
+
+        <!-- Receipt Section (Initially Hidden) -->
+        <div id="receipt-section" class="mb-4" style="display: none;">
+            <h2>קבלה</h2>
+            <p id="receipt-content"></p>
+        </div>
+
+        <!-- Submit Button (Initially Hidden) -->
+        <button id="submit-order-btn" class="btn btn-success" style="display: none;">המשך להזמנה</button>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light text-center py-4">
+        <p>&copy; 2024 Meat & Cheese. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/shipments.js"></script>
+</body>
+</html>

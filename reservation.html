@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meat & Cheese - הזמנת שולחן</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body dir="rtl">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Meat & Cheese</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="menu.html">תפריטים</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="branches.html">סניפים</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">גלרייה</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="shipments.html">משלוחים</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">צור קשר</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><img src="images/facebook_icon.png" alt="Facebook"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><img src="images/instagram_icon.png" alt="Instagram"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Reservation Form -->
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">הזמנת שולחן</h1>
+        <div class="card">
+            <div class="card-body">
+                <form id="reservation-form">
+                    <div class="mb-3">
+                        <label for="branch-name" class="form-label">שם מסעדה</label>
+                        <input type="text" class="form-control" id="branch-name" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="customer-name" class="form-label">שם מלא</label>
+                        <input type="text" class="form-control" id="customer-name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone-number" class="form-label">טלפון</label>
+                        <input type="tel" class="form-control" id="phone-number" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="num-people" class="form-label">מספר אנשים</label>
+                        <input type="number" class="form-control" id="num-people" min="1" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="reservation-time" class="form-label">שעה</label>
+                        <input type="time" class="form-control" id="reservation-time" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">אישור הזמנה</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Receipt Section (Initially Hidden) -->
+        <div id="receipt-section" class="mt-5" style="display: none;">
+            <h2>אישור</h2>
+            <p id="receipt-content"></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light text-center py-4">
+        <p>&copy; 2024 Meat & Cheese. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS -->
+    <script>
+        $(document).ready(function() {
+            // Get branch name from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const branchName = urlParams.get('branch');
+            $("#branch-name").val(branchName);
+
+            // Handle form submission
+            $("#reservation-form").on("submit", function(event) {
+                event.preventDefault();
+
+                const customerName = $("#customer-name").val();
+                const phoneNumber = $("#phone-number").val();
+                const numPeople = $("#num-people").val();
+                const reservationTime = $("#reservation-time").val();
+
+                // Validate phone number (basic validation)
+                const phoneRegex = /^0\d{9}$/;
+                if (!phoneRegex.test(phoneNumber)) {
+                    alert("מספר טלפון לא תקין. יש להזין מספר טלפון בן 10 ספרות שמתחיל ב-0.");
+                    return;
+                }
+
+                // Validate reservation time (between 11:00 and 03:00)
+                const [hours, minutes] = reservationTime.split(':').map(Number);
+                if (!((hours >= 11 && hours < 24) || (hours >= 0 && hours < 3))) {
+                    alert("השעה שהוזנה לא תקינה. יש להזין שעה בין 11:00 ל-03:00.");
+                    return;
+                }
+
+                // Ensure minutes do not exceed 59
+                if (minutes >= 60) {
+                    alert("הדקות שהוזנו לא תקינות. יש להזין מספר דקות בין 00 ל-59.");
+                    return;
+                }
+
+                const receipt = `
+                    שם לקוח: ${customerName}<br>
+                    שם מסעדה: ${branchName}<br>
+                    מספר אנשים: ${numPeople}<br>
+                    שעה: ${reservationTime}<br>
+                    טלפון: ${phoneNumber}
+                `;
+
+                $("#receipt-section").show();
+                $("#receipt-content").html(receipt);
+            });
+        });
+    </script>
+</body>
+</html>
